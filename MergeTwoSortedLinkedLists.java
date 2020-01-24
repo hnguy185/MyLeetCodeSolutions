@@ -14,48 +14,33 @@ class Solution {
         if(l2 == null)
             return l1;
         if(l1.val < l2.val) {
-            L = new ListNode(l1.val);
+            L = l1;
             l1 = l1.next;
         }
         else {
-            L = new ListNode(l2.val);
+            L = l2;
             l2 = l2.next;
         }
         ListNode cur = L;
         while(l1 != null && l2 != null) {
             //System.out.println(l1.val + " | " + l2.val);
-            if(l1.val < l2.val) {
-                cur.next = new ListNode(l1.val);
+            if(l1.val <= l2.val) {
+                cur.next = l1;
                 cur = cur.next;
                 l1 = l1.next;
-                continue;
-            }
-            else if(l1.val == l2.val) {
-                cur.next = new ListNode(l1.val);
-                cur = cur.next;
-                l1 = l1.next;
-                cur.next = new ListNode(l2.val);
-                cur = cur.next;
-                l2 = l2.next;
                 continue;
             }
             else {
-                cur.next = new ListNode(l2.val);
+                cur.next = l2;
                 cur = cur.next;
                 l2 = l2.next;
                 continue;
             }
         }
-        while(l1 != null) {
-            cur.next = new ListNode(l1.val);
-            cur = cur.next;
-            l1 = l1.next;
-        }
-        while(l2 != null) {
-            cur.next = new ListNode(l2.val);
-            cur = cur.next;
-            l2 = l2.next;
-        }
+        if(l1 == null)
+            cur.next = l2;
+        else
+            cur.next = l1;
         return L;
     }
 }
